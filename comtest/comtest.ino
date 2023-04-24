@@ -5,7 +5,7 @@ const char* ssid = "Saar Anna";
 const char* password = "mosranna";
 
 const uint16_t port = 8090;
-const char* host = "192.168.223.57";
+const char* host = "192.168.223.58"; // Rohan's laptop
 
 WiFiClient client;
 
