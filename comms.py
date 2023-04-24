@@ -1,13 +1,11 @@
 import socket
 
-def init_socket():
+def run_comms(listval):
 
     s = socket.socket()
 
     s.bind(('0.0.0.0', 8000))
     s.listen(0)
-
-def run_comms(listval):
 
     while True:
         client, addr = s.accept()
