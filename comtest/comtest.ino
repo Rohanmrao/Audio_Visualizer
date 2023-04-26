@@ -64,6 +64,56 @@ uint8_t metal_leds[60][3] ={{244, 184, 0}, {240, 180, 0},
 
 Adafruit_NeoPixel pixels(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
+void classic_beat(float tempoval){
+
+    float tempo = tempoval;
+    for (int i = 0; i < LED_COUNT; i++) {
+      pixels.setPixelColor(i, pixels.Color(classic_leds[i][0], classic_leds[i][1], classic_leds[i][2]));
+      pixels.show();
+      delay(tempo/3);
+    }
+
+    for (int i = LED_COUNT - 1; i >= 0; i--) {
+      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
+      pixels.show();
+      delay(tempo/3);
+    }
+
+  }
+
+void jazz_beat(float tempoval){
+
+    float tempo = tempoval;
+    for (int i = 0; i < LED_COUNT; i++) {
+      pixels.setPixelColor(i, pixels.Color(jazz_leds[i][0], jazz_leds[i][1], jazz_leds[i][2]));
+      pixels.show();
+      delay(tempo/3);
+    }
+    for (int i = LED_COUNT - 1; i >= 0; i--) {
+      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
+      pixels.show();
+      delay(tempo/3);
+
+    }
+
+}
+
+void metal_beat(float tempoval){
+    float tempo = tempoval;
+
+    for (int i = 0; i < LED_COUNT; i++) {
+      pixels.setPixelColor(i, pixels.Color(metal_leds[i][0], metal_leds[i][1], metal_leds[i][2]));
+      pixels.show();
+      delay(tempo/3);
+    }
+    for (int i = LED_COUNT - 1; i >= 0; i--) {
+      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
+      pixels.show();
+      delay(tempo/3);
+    }
+  }
+
+
 void setup()
 {
   pixels.begin();
@@ -84,58 +134,6 @@ void setup()
   
   if (!client.connect(host, port)) {
     Serial.println("Connection to host failed");
-  }
-
-  void classic_beat(float tempoval)
-  {
-
-    float tempo = tempoval;
-    for (int i = 0; i < LED_COUNT; i++) {
-      pixels.setPixelColor(i, pixels.Color(classic_leds[i][0], classic_leds[i][1], classic_leds[i][2]));
-      pixels.show();
-      delay(tempo/3);
-    }
-
-    for (int i = LED_COUNT - 1; i >= 0; i--) {
-      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
-      pixels.show();
-      delay(tempo/3);
-    }
-
-  }
-
-  void jazz_beat(float tempoval)
-  {
-
-    float tempo = tempoval;
-    for (int i = 0; i < LED_COUNT; i++) {
-      pixels.setPixelColor(i, pixels.Color(jazz_leds[i][0], jazz_leds[i][1], jazz_leds[i][2]));
-      pixels.show();
-      delay(tempo/3);
-    }
-    for (int i = LED_COUNT - 1; i >= 0; i--) {
-      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
-      pixels.show();
-      delay(tempo/3);
-
-    }
-
-  }
-
-  void metal_beat(float tempoval)
-  {
-    float tempo = tempoval;
-
-    for (int i = 0; i < LED_COUNT; i++) {
-      pixels.setPixelColor(i, pixels.Color(metal_leds[i][0], metal_leds[i][1], metal_leds[i][2]));
-      pixels.show();
-      delay(tempo/3);
-    }
-    for (int i = LED_COUNT - 1; i >= 0; i--) {
-      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
-      pixels.show();
-      delay(tempo/3);
-    }
   }
 }
 
@@ -182,44 +180,26 @@ void loop()
         Serial.println(floatElement);
 
         
-        if (strElement == "Jazz"){
+        if (strElement == "Jazz"){jazz_beat(floatElement);}
 
-            jazz_beat(floatElement)
-        }
+        if (strElement == "Metal"){metal_beat(floatElement);}
 
-        if (strElement == "Metal"){
-
-            metal_beat(floatElement)
-
-        }
-
-        if (strElement == "Classical"){
-
-            classical_beat(floatElement)
-        }
+        if (strElement == "Classical"){classic_beat(floatElement);}
       } 
       
-      else {
-
-        Serial.println("Received data does not have expected number of elements");
-
-      }
+      else {Serial.println("Received data does not have expected number of elements");}
     }
   } 
   
-    else {
-
+  else 
+  {
       Serial.println("Disconnected from server");
       client.stop();
       delay(1000);
       
-      if (!client.connect(host, port)) {
-        Serial.println("Reconnection to host failed");
-      }
+      if (!client.connect(host, port)) {Serial.println("Reconnection to host failed");}
     }
     
-    delay(1000);
-
-  }
+  delay(1000);
 
 }
