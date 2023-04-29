@@ -4,5 +4,8 @@ Music Genre Classification (XGBoost) + Socket Programming + esp32 + LED Array
 
 Dataset : https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
 
-Results : ![image](https://user-images.githubusercontent.com/70153723/235292335-797f869c-8773-4a25-ab62-91709f57b2a3.png)
+Evaluation Metrics :
+
+![image](https://user-images.githubusercontent.com/70153723/235292367-b06c8b21-f3ec-4f61-8c84-16973edb4a85.png)
+
 
