@@ -2,11 +2,11 @@
 #include <WiFiClient.h>
 #include <Adafruit_NeoPixel.h>
 
-const char* ssid = "Saar Anna";
-const char* password = "mosranna";
+const char* ssid = "";
+const char* password = "";
 
-const uint16_t port = 8090;
-const char* host = "192.168.223.58"; // Rohan's laptop
+const uint16_t port = ;
+const char* host = ""; // Server laptop
 
 #define LED_PIN 4
 #define LED_COUNT 60
